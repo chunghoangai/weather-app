@@ -7,9 +7,13 @@
 
 import Testing
 @testable import Weather
+
+enum DummyError: Error {
+    case dummyError
+}
 @Suite("BusinessLayer TDD")
 struct FetchWeatherUseCaseTests {
-    @Test func testFetchWeatherData() async throws {
+    @Test func executeSuccess() async throws {
         let expectedWeather = WeatherEntity(
             temperature: 28.5,
             windSpeed: 12.0,
@@ -26,6 +30,16 @@ struct FetchWeatherUseCaseTests {
         #expect(result == expectedWeather)
         #expect(mockRepository.lastLatitude == 10.8231)
         #expect(mockRepository.lastLongitude == 106.6297)
+    }
+    
+    @Test func executeFailure() async {
+        let mockRepository = MockWeatherDataRepository()
+        mockRepository.resultToReturn = .failure(DummyError.dummyError)
+        let sut = await FetchWeatherUseCase(repository: mockRepository)
+
+        await #expect(throws: DummyError.self) {
+            try await sut.execute(latitude: 10.8231, longitude: 106.6297)
+        }
     }
 
 }
