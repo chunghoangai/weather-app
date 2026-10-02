@@ -1,6 +1,6 @@
 import Foundation
 
-struct WeatherEntity {
+struct WeatherEntity: Equatable {
 	let temperature: Double
 	let windSpeed: Double
 	let weatherCode: Int
