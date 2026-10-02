@@ -11,6 +11,9 @@ Simple app to fetch weather using https://open-meteo.com/
 
 # Arch
 - This project follows **Clean Architecture** paired with **MVVM-C (Model-View-ViewModel-Coordinator)**.
+## Design
+## Model
+## Testing
 
 # Getting start:
 ## Prerequisites
