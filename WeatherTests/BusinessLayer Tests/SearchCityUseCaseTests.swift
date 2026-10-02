@@ -9,16 +9,14 @@ import Testing
 
 @testable import Weather
 
-enum DummyError: Error {
-	case dummyError
-}
+
 @Suite("BusinessLayer TDD")
 struct SearchCityUseCaseTests {
 	@Test func executeSuccess() async throws {
 		let cities = [CityEntity]()
 		let mockRepository = MockSearchCityDataRepository()
 		let sut = await SearchCityUseCase(repository: mockRepository)
-		let result = try await sut.searh(for: "HCM")
+		let result = try await sut.search(for: "HCM")
 
 		#expect(result.count == cities.count)
 	}

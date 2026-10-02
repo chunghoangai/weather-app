@@ -13,6 +13,7 @@ enum DummyError: Error {
 }
 @Suite("BusinessLayer TDD")
 struct FetchWeatherUseCaseTests {
+	@MainActor
     @Test func executeSuccess() async throws {
         let expectedWeather = WeatherEntity(
             temperature: 28.5,
@@ -24,7 +25,7 @@ struct FetchWeatherUseCaseTests {
         let mockRepository = MockWeatherDataRepository()
         mockRepository.resultToReturn = .success(expectedWeather)
         
-        let sut = await FetchWeatherUseCase(repository: mockRepository)
+        let sut = FetchWeatherUseCase(repository: mockRepository)
         let result = try await sut.execute(latitude: 10.8231, longitude: 106.6297)
         
         #expect(result == expectedWeather)
