@@ -3,8 +3,10 @@ import Foundation
 struct CityEntity: Equatable {
 	let name: String
 	let country: String
-	let minLat: String
-	let minLon: String
-	let minPopulation: Int
-	let maxPopulation: Int
+	let latitude: Double
+	let longitude: Double
+	let population: Int
+	let region: String = "N/A"
+	let isCapital: Bool = false
+	
 }

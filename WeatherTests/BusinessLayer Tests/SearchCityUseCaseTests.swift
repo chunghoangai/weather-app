@@ -18,7 +18,8 @@ struct SearchCityUseCaseTests {
 		let sut = await SearchCityUseCase(repository: mockRepository)
 		let result = try await sut.search(for: "HCM")
 
-		#expect(result.count == cities.count)
+		#expect(result.count == 1)
+		#expect(result.first?.name == "Ho Chi Minh City")
 	}
 
 }
