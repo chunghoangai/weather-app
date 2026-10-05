@@ -12,7 +12,7 @@ import Testing
 struct SearchCityRepositoryTest {
 	@Test func testSuccessSearch() async {
 		let cityEntities = [CityEntityDTO]
-		let repository = MockSearchCityRepository()
+		let repository = SearchCityRepository()
 		let result = repository.search(for: "HCM")
 		#expect(!result.isEmpty)
 	}
